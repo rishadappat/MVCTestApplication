@@ -27,8 +27,8 @@ class MainActivity : AppCompatActivity() {
         loginButton.setOnClickListener {
             Utility.showLoaderDialog(this, "Loading")
             val params = CustomerLoginRequest(usernameEditText.text.toString(), passwordEditText.text.toString(), "")
-            UserManagementAPI.UserLogin(params, {
-                Toast.makeText(this, "User Login Success", Toast.LENGTH_LONG).show()
+            UserManagementAPI.UserLogin(params, { loginResponse->
+                Toast.makeText(this, "User Login Success: ${loginResponse?.dataField?.get(0)?.pkUserId}", Toast.LENGTH_LONG).show()
             }, {
                 Toast.makeText(this, it, Toast.LENGTH_LONG).show()
             })

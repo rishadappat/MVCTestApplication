@@ -1,5 +1,6 @@
 package com.appat.mvcapplication.API.APIClasses
 
+import com.appat.mvcapplication.API.Enums.EndPointsEnum
 import com.appat.mvcapplication.API.Volley.APIController
 import com.appat.mvcapplication.Models.RequestModel.CustomerLoginRequest
 import com.appat.mvcapplication.Models.ResponseModel.CustomerLogin.CustomerLoginResponse
@@ -9,7 +10,7 @@ object UserManagementAPI
 {
     fun UserLogin(params: CustomerLoginRequest, completionHandler: (response: CustomerLoginResponse?) -> Unit, failureHandler: (error: String?) -> Unit)
     {
-        val serviceUrl = Utility.getBaseURL() + "login/CustomerLogin"
+        val serviceUrl = Utility.getBaseURL() + EndPointsEnum.UserLogin.value
         APIController.instance().post(serviceUrl, params.toJSONObject(), {
             completionHandler(CustomerLoginResponse.create(it.toString()))
         }, failureHandler)
